@@ -1,0 +1,15 @@
+
+/*couleur et taille de la navbar*/
+.navbar-custom {
+  background-color: #272B3A;
+  height: 51px;
+}
+
+/*longueur input*/
+.form-control{
+
+  width: 250px !important;
+}
+.title-connexion{
+
+}
