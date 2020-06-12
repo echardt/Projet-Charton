@@ -3,17 +3,23 @@
 .navbar-custom {
   background-color: #272B3A;
   height: 51px;
-
 }
-
 /*longueur input*/
 .form-control{
   width: 250px !important;
 }
-
 .container{
   margin-top: 12%;
-
+}
+.btn-primary {
+  margin-left: 15% !important;
+}
+.title-connexion{
+  margin-left: 12% !important;
+}
+.form-group{
+  margin-top: 30px;
+  padding-top: 10px;
 }
 
 
@@ -23,7 +29,9 @@
 
   .container{
       padding-left: 20% !important;
-
-  }
+      padding-top: 20% !important;
+}
+.btn-primary {
+  margin-left: 20% !important;
 
 }
