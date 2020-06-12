@@ -3,16 +3,27 @@
 .navbar-custom {
   background-color: #272B3A;
   height: 51px;
+
 }
 
 /*longueur input*/
 .form-control{
-
   width: 250px !important;
 }
-.title-connexion{
 
-}
 .container{
   margin-top: 12%;
+
+}
+
+
+
+
+@media screen and (max-width: 576px) {
+
+  .container{
+      padding-left: 20% !important;
+
+  }
+
 }
