@@ -14,7 +14,7 @@
     </head>
   <body>
 
-<form>
+<form method="post" action="controllers/Login.php">
     <div class="container">
       <div class="row">
         <div class=" col  col-sm-8 offset-sm-4 col-md-5 offset-md-5 col-lg-5 offset-lg-5">
@@ -26,12 +26,12 @@
         <div class="form-group">
 
               <label for="exampleInputEmail1">Identifiant</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" required>
         </div>
 
         <div class="form-group">
               <label for="exampleInputPassword1">Mot de passe</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" class="form-control" name="pass" id="exampleInputPassword1" required>
         </div>
         <button type="submit" class="btn btn-primary">CONNEXION</button>
 
