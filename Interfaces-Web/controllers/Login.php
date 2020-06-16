@@ -1,6 +1,10 @@
 <?php
-      if(isset($_POST['formsend'])){
-        
+
+  
+
+
+      /*if(isset($_POST['formsend'])){
+
         extact($_POST);
 
         if(!empty($password) && !empty($password) && !empty($email)){
@@ -26,5 +30,6 @@
         echo "Les champs ne sont pas tous remplis";
       }
   }
+  */
 
   ?>

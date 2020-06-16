@@ -3,7 +3,7 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Page de connexion</title>
+      <title></title>
 
       <link rel="stylesheet" href="../css/login.css">
       <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
@@ -12,7 +12,7 @@
   <body>
     <!--Navbar!-->
     <nav class="navbar navbar-custom">
-        <h4>AUTO-ECOLE CHARTON</h2>
+        <h4 class="title-navbar">AUTO-ECOLE CHARTON</h2>
     </nav>
     <div class="nav-color"></div>
 
@@ -25,15 +25,15 @@
 
 
 
-<!-- Footer -->
+
 <footer class="footer">
 
-<!-- Copyright -->
+
 <div class="footer-copyright">Copyright© 2019-2020 Team BN Tous droits réservés </div>
-<!-- Copyright -->
+
 
 </footer>
-<!-- Footer -->
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

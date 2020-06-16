@@ -1,0 +1,47 @@
+.G-leçons{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  width: 330px;
+  background-color: rgb(236, 236, 236);
+  margin-top: 115px;
+  border: solid 2px black;
+}
+
+.H-leçons{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 91px;
+  width: 330px;
+  background-color: rgb(236, 236, 236);
+  margin-top: 65px;
+  border: solid 2px black;
+}
+
+.title-H-G{
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 15px;
+    padding-top: 5px;
+
+}
+
+.tilte-info{
+  padding-top: 29px;
+  padding-left: 25px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.case-info{
+  font-size: 13px;
+  padding-left: 25px;
+}
+.btn-danger{
+  margin-top: 10px;
+  float: right;
+  margin-right: 22px;
+}
