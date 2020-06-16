@@ -14,10 +14,6 @@
     </head>
   <body>
     <!--Navbar!-->
-
-
-
-
 <form>
     <div class="container">
       <div class="row">
