@@ -11,7 +11,7 @@ include('../controllers/disgn.php');
    </head>
    <body>
 
-          <button type="button" class="btn btn-danger">déconnexion</button>
+          <a href="../espace_client.php"><button type="button" class="btn btn-danger">déconnexion</button></a>
 
           <div class="G-leçons">
                 <h7 class="title-H-G">Gestion des leçons</h7>
