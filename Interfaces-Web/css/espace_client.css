@@ -40,7 +40,7 @@ body{
     padding-left: 15px;
     font-size: 17px;
     line-height: 70px;
-    padding-left
+
 
 
   }
@@ -52,8 +52,70 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
+#C-popup{
+  display: block;
+  height: 400px;
+  width: 330px;
+  background-color: #f3f5f6;
 
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -1270px;
+
+
+}
+.C-title{
+  display: flex;
+  justify-content: center;
+}
+.boutton{
+  float: right;
+
+}
+.btn-danger{
+
+  margin-top: 20px;
+
+}
+.btn-primary{
+
+  margin-top: 20px;
+
+  background-color: #2E5F84 !important;
+
+}
+
+.form-group{
+  margin-top: 5px;
+  padding-top: 10px;
+}
 @media screen and (max-width: 576px) {
 
   .C-connexion{
     margin-top: 235px;
+
+  }
+  /*.boutton{
+    float: right;
+
+  }*/
+  .btn-danger{
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+
+  }
+  .btn-primary{
+    float: right;
+    margin-right: 20px
+    margin-top: 20px;
+
+    background-color: #2E5F84 !important;
+
+  }
+
+  /*#C-popup{
+    margin-top: -300px;
+  }
+*/

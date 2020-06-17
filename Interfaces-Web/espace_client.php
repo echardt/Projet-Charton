@@ -18,11 +18,11 @@
 
         <div class="C-connexion">
           <div class="title-1">
-            <p>Vous voulez vous connecter tant que :</p>
+            <p>Vous voulez vous connecter en tant que :</p>
           </div>
 
             <div class="bloc-client">
-                <button class="connexion">+  Adhérent</button>
+                <button class="connexion" onclick="openModal()">+  Adhérent</button>
             </div>
             <div class="ligne"></div>
             <div class="bloc-moniteur">
@@ -30,45 +30,28 @@
             </div>
           </div>
 
-          <div id="C-popup"></div>
-
-
-
-
-
-
-
-<!--
-<form method="post" action="controllers/Login.php">
-    <div class="container">
-      <div class="row">
-        <div class=" col  col-sm-8 offset-sm-4 col-md-5 offset-md-5 col-lg-5 offset-lg-5">
-
-
-
-
-      <h3 class="title-connexion">Identification</h3>
-        <div class="form-group">
-
-              <label for="exampleInputEmail1">Identifiant</label>
-              <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-        </div>
-
-        <div class="form-group">
-              <label for="exampleInputPassword1">Mot de passe</label>
-              <input type="password" class="form-control" name="pass" id="exampleInputPassword1" required>
-        </div>
-        <button type="submit" class="btn btn-primary">CONNEXION</button>
-
-      </div>
-    </div>
+          <div id="C-popup">
+          <h3 class="C-title">Identification</h3>
+              <br><br>
+            <form  method="post" action="controllers/Login.php">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Mot de passe</label>
+    <input  name="pass" type="password" class="form-control" id="exampleInputPassword1" >
   </div>
 
-</form>
 
-!-->
-<!--<script type="text/javascript" src="javascript/popup-connexion.js">!-->
+<div class="boutton">
+<button type="submit" class="btn btn-primary">CONNEXION</button>
+</div>
+</from>
+<button class="btn btn-danger" onclick="closeModal()">Annuler</button>
+</div>
 
-</script>
+<script type="text/javascript" src="javascript/popup-connexion.js"></script>
+<br><br><br><br><br><br>
 </body>
 </html>

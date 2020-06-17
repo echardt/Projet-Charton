@@ -4,13 +4,11 @@
 $Cli_Mail = $_POST['mail'];
 $Cli_MotDePasse = $_POST['pass'];
 
-echo "bien";
-
 $server="localhost"; // peut-être remplacé par l'adresse IP
 $base ="charton";
 $userdb ="root";
 $userpwd="root";
-$table = "client";
+$table = "moniteur";
 // ouverture de la connexion vers le moteur de la base de données
 $connexion = new mysqli($server, $userdb, $userpwd, $base);
 if ($connexion->connect_error) {
