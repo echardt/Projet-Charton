@@ -1,0 +1,59 @@
+body{
+  background-color: #f3f5f6 ;
+}
+
+.C-connexion{
+
+    display: block;
+    height: 200px;
+    width: 330px;
+    background-color: #ffffff;
+    border: 1px solid #d7dee2;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 115px;
+  }
+  .title-1 p {
+    font-size: 14px;
+    padding-top: 10px;
+    padding-left: 15px;
+  }
+.bloc-client {
+  display: block;
+  height: 75px;
+  width: 330px;
+
+
+}
+.bloc-moniteur{
+  display: block;
+  height: 75px;
+  width: 330px;
+
+}
+  .connexion{
+    outline: none;
+    text-decoration: none;
+    background-color: #ffffff;
+    border: none 0px;
+    color: #006DCC;
+    padding-left: 15px;
+    font-size: 17px;
+    line-height: 70px;
+    padding-left
+
+
+  }
+.ligne{
+    display: block;
+    height: 2px;
+    width: 300px;
+    background-color: #d7dee2;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 576px) {
+
+  .C-connexion{
+    margin-top: 235px;

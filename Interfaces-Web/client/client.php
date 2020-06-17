@@ -6,6 +6,7 @@ include('../controllers/disgn.php');
  <html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
+     <link rel="stylesheet" href="../css/login.css">
      <link rel="stylesheet" href="../css/client.css">
      <title>Espace client</title>
    </head>
