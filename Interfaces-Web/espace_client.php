@@ -38,10 +38,7 @@
 
             <form  method="post" action="controllers/Login.php">
 
-              <?php
-$variable = function() {
-         // code ....
-};
+
     <!--input de l'email !-->
   <div class="form-group">
     <label for="exampleInputEmail1">Email</label>
@@ -57,11 +54,17 @@ $variable = function() {
 
   <!--Button connexion!-->
   <button type="submit" class="btn btn-primary">CONNEXION</button>
-};?>
+  
 </from>
 
 <!--Button d'annulation du formulaire de connexion!-->
 <button  type="button"class="btn btn-danger" onclick="closeModal()">Annuler</button>
+</div>
+
+
+<div class="d">
+
+
 </div>
 
 <!-- link Script de la popup !-->
