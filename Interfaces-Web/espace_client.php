@@ -30,28 +30,44 @@
             </div>
           </div>
 
+
           <div id="C-popup">
+
           <h3 class="C-title">Identification</h3>
               <br><br>
+
             <form  method="post" action="controllers/Login.php">
+
+              <?php
+$variable = function() {
+         // code ....
+};
+    <!--input de l'email !-->
   <div class="form-group">
     <label for="exampleInputEmail1">Email</label>
-    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
   </div>
+
+
+  <!--input du mot de passe !-->
   <div class="form-group">
     <label for="exampleInputPassword1">Mot de passe</label>
-    <input  name="pass" type="password" class="form-control" id="exampleInputPassword1" >
+    <input  name="mdp" type="password" class="form-control" id="exampleInputPassword1" required>
   </div>
 
-
-<div class="boutton">
-<button type="submit" class="btn btn-primary">CONNEXION</button>
-</div>
+  <!--Button connexion!-->
+  <button type="submit" class="btn btn-primary">CONNEXION</button>
+};?>
 </from>
-<button class="btn btn-danger" onclick="closeModal()">Annuler</button>
+
+<!--Button d'annulation du formulaire de connexion!-->
+<button  type="button"class="btn btn-danger" onclick="closeModal()">Annuler</button>
 </div>
 
+<!-- link Script de la popup !-->
 <script type="text/javascript" src="javascript/popup-connexion.js"></script>
-<br><br><br><br><br><br>
+
+<br><br><br><br><br>
+
 </body>
 </html>
