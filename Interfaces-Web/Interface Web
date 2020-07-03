@@ -1,0 +1,226 @@
+// utilisation des fichiers/fonctions systèmes
+use System.Data.SqlClient
+use System.Web.Security
+
+
+// configuration des paramétres de sécurité
+
+
+// insertion balise "forms" et renseignements des attributs
+<authentication mode="Forms">
+   <forms name=".ASPXFORMSDEMO" loginUrl="logon.aspx" 
+   protection="All" path="/" timeout="30" />
+</authentication> 
+
+// interdiction des utilisateurs anonymes
+<authorization>
+   <deny users ="?" />
+   <allow users = "*" />
+</authorization>
+
+// création de la table (BdD) pour enregistrements d'infos utilisateurs (script SQL)
+
+// BdD pour enregistrer les paramétres de connexion des utilisateurs (mdp, id, ...)
+
+if exists (select * from sysobjects where id = 
+object_id(N'[dbo].[Users]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[Users]
+GO
+CREATE TABLE [dbo].[Users] (
+   [uname] [varchar] (15) NOT NULL ,
+   [Pwd] [varchar] (25) NOT NULL ,
+   [userRole] [varchar] (25) NOT NULL ,
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Users] WITH NOCHECK ADD 
+   CONSTRAINT [PK_Users] PRIMARY KEY  NONCLUSTERED 
+   (
+      [uname]
+   )  ON [PRIMARY] 
+GO
+
+INSERT INTO Users values('user1','user1','Manager')
+INSERT INTO Users values('user2','user2','Admin')
+INSERT INTO Users values('user3','user3','User')
+GO
+
+// création page "logon.aspx"
+
+// insertion d'un nouveau formulaire
+
+<h3>
+   <font face="Verdana">Logon Page</font>
+</h3>
+<table>
+   <tr>
+      <td>Email:</td>
+      <td><input id="txtUserName" type="text" runat="server"></td>
+      <td><ASP:RequiredFieldValidator ControlToValidate="txtUserName"
+           Display="Static" ErrorMessage="*" runat="server" 
+           ID="vUserName" /></td>
+   </tr>
+   <tr>
+      <td>Password:</td>
+      <td><input id="txtUserPass" type="password" runat="server"></td>
+      <td><ASP:RequiredFieldValidator ControlToValidate="txtUserPass"
+          Display="Static" ErrorMessage="*" runat="server" 
+          ID="vUserPass" />
+      </td>
+   </tr>
+   <tr>
+      <td>Persistent Cookie:</td>
+      <td><ASP:CheckBox id="chkPersistCookie" runat="server" autopostback="false" /></td>
+      <td></td>
+   </tr>
+</table>
+<input type="submit" Value="Logon" runat="server" ID="cmdLogin"><p></p>
+<asp:Label id="lblMsg" ForeColor="red" Font-Name="Verdana" Font-Size="10" runat="server" />
+
+// Ce formulaire Web permet de présenter un formulaire d'ouverture de session aux utilisateurs pour qu'ils puissent fournir leur nom d'utilisateur et leur mot de passe et se connecter à l'application.
+
+
+
+// Codage du gestionnaire d'événements pour qu'il valide les informations d'identification des utilisateurs
+
+// utilisation des fichiers/fonctions systèmes
+use System.Data.SqlClient
+use System.Web.Security
+
+// création d'une fonction "ValidateUser"
+
+private bool ValidateUser( string userName, string passWord )
+{
+SqlConnection conn;
+SqlCommand cmd;
+string lookupPassword = null;
+
+// Check for invalid userName.
+// userName must not be null and must be between 1 and 15 characters.
+if ( (  null == userName ) || ( 0 == userName.Length ) || ( userName.Length > 15 ) )
+{
+System.Diagnostics.Trace.WriteLine( "[ValidateUser] Input validation of userName failed." );
+return false;
+}
+
+// Check for invalid passWord.
+// passWord must not be null and must be between 1 and 25 characters.
+if ( (  null == passWord ) || ( 0 == passWord.Length ) || ( passWord.Length > 25 ) )
+{
+System.Diagnostics.Trace.WriteLine( "[ValidateUser] Input validation of passWord failed." );
+return false;
+}
+
+try
+{
+// Consult with your SQL Server administrator for an appropriate connection
+// string to use to connect to your local SQL Server.
+conn = new SqlConnection( "server=localhost;Integrated Security=SSPI;database=pubs" );
+conn.Open();
+
+// Create SqlCommand to select pwd field from users table given supplied userName.
+cmd = new SqlCommand( "Select pwd from users where uname=@userName", conn );
+cmd.Parameters.Add( "@userName", SqlDbType.VarChar, 25 );
+cmd.Parameters["@userName"].Value = userName;
+
+// Execute command and fetch pwd field into lookupPassword string.
+lookupPassword = (string) cmd.ExecuteScalar();
+
+// Cleanup command and connection objects.
+cmd.Dispose();
+conn.Dispose();
+}
+catch ( Exception ex )
+{
+// Add error handling here for debugging.
+// This error message should not be sent back to the caller.
+System.Diagnostics.Trace.WriteLine( "[ValidateUser] Exception " + ex.Message );
+}
+
+// If no password found, return false.
+if ( null == lookupPassword ) 
+{
+// You could write failed login attempts here to event log for additional security.
+return false;
+}
+
+// Compare lookupPassword and input passWord, using a case-sensitive comparison.
+return ( 0 == string.Compare( lookupPassword, passWord, false ) );
+
+}
+
+// Deux méthodes peuvent être appliquées pour générer le cookie d’authentification basé sur les formulaires et rediriger l’utilisateur vers une page appropriée dans l’événement cmdLogin_ServerClick. Un exemple de code est fourni pour les deux scénarios. Appliquez l'une de ces méthodes, selon vos besoins.
+
+// Appelez la méthode RedirectFromLoginPage pour générer automatiquement le cookie d’authentification basé sur les formulaires et rediriger l’utilisateur vers une page appropriée dans l’événement cmdLogin_ServerClick
+
+private void cmdLogin_ServerClick(object sender, System.EventArgs e)
+{
+if (ValidateUser(txtUserName.Value,txtUserPass.Value) )
+FormsAuthentication.RedirectFromLoginPage(txtUserName.Value,
+chkPersistCookie.Checked);
+else
+Response.Redirect("logon.aspx", true);
+}
+
+// Générez le ticket d'authentification, chiffrez-le, créez un cookie, ajoutez-le à la séquence, puis redirigez l'utilisateur. Cette méthode procure un contrôle accru sur la création du cookie. Dans ce cas, vous pouvez également inclure des données personnalisées avec FormsAuthenticationTicket.
+
+private void cmdLogin_ServerClick(object sender, System.EventArgs e)
+{
+   if (ValidateUser(txtUserName.Value,txtUserPass.Value) )
+   {
+      FormsAuthenticationTicket tkt;
+      string cookiestr;
+      HttpCookie ck;
+      tkt = new FormsAuthenticationTicket(1, txtUserName.Value, DateTime.Now, 
+DateTime.Now.AddMinutes(30), chkPersistCookie.Checked, "your custom data");
+      cookiestr = FormsAuthentication.Encrypt(tkt);
+      ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr);
+      if (chkPersistCookie.Checked)
+      ck.Expires=tkt.Expiration;
+    ck.Path = FormsAuthentication.FormsCookiePath; 
+      Response.Cookies.Add(ck);
+
+      string strRedirect;
+      strRedirect = Request["ReturnUrl"];
+      if (strRedirect==null)
+            strRedirect = "default.aspx";
+         Response.Redirect(strRedirect, true);
+   }
+   else
+      Response.Redirect("logon.aspx", true);
+}
+
+// Vérifier que le code suivant est ajouté à la méthode InitializeComponent dans le code généré par le Concepteur Web Form
+this.cmdLogin.ServerClick += new System.EventHandler(this.cmdLogin_ServerClick);
+
+// création d'une page "default.aspx"
+
+// basculer en mode HTML
+<input type="submit" Value="SignOut" runat="server" id="cmdSignOut">
+
+// utilisation des fichiers/fonctions systèmes
+use System.Web.Security
+
+// Ouvrir la page code-behind
+
+// dans le gestionnaire d'événements cmdSignOut_ServerClick
+
+private void cmdSignOut_ServerClick(object sender, System.EventArgs e)
+{
+   FormsAuthentication.SignOut();
+   Response.Redirect("logon.aspx", true);
+}
+
+// Vérifier que le code suivant est ajouté à la méthode InitializeComponent dans le code généré par le Concepteur Web Form
+
+this.cmdSignOut.ServerClick += new System.EventHandler(this.cmdSignOut_ServerClick);
+
+/* REMARQUES 
+
+Vous souhaitez peut-être stocker les mots de passe de manière sécurisée dans une base de données. Vous pouvez utiliser la fonction d’utilitaire de classe FormsAuthentication nommée HashPasswordForStoringInConfigFile pour chiffrer les mots de passe avant de les stocker dans la base de données ou dans le fichier de configuration.
+Vous souhaitez peut-être stocker les informations de connexion SQL dans le fichier de configuration (Web.config) de manière à pouvoir les modifier facilement si nécessaire.
+Vous pouvez ajouter du code afin d'empêcher les pirates informatiques qui essaient différentes combinaisons de mots de passe de se connecter. Par exemple, vous pouvez inclure une logique qui accepte uniquement deux ou trois tentatives de connexion. Si l'utilisateur ne peut se connecter après un certain nombre de tentatives, il peut être utile de définir un indicateur dans la base de données afin d'interdire à cet utilisateur de se connecter tant qu'il n'a pas réactivé son compte en accédant à une page différente ou en appelant la ligne d'assistance. En outre, vous devez ajouter une gestion des erreurs appropriée le cas échéant.
+L'utilisateur étant identifié d'après le cookie d'authentification, vous souhaitez peut-être utiliser le protocole SSL (Secure Sockets Layer) sur cette application de sorte que personne ne puisse intercepter le cookie d'authentification ni toute autre information sensible transmise.
+L'authentification basée sur les formulaires exige que votre client accepte ou active les cookies sur son navigateur.
+Le paramètre timeout de la section de configuration <authentication> contrôle l’intervalle auquel le cookie d’authentification est régénéré. Vous pouvez sélectionner une valeur qui optimise la sécurité et les performances.
+Certains caches et proxy intermédiaires sur Internet peuvent mettre en cache les réponses de serveur Web qui contiennent des en-têtes Set-Cookie, qui sont ensuite retournées à un utilisateur différent. Le fait que l'authentification basée sur les formulaires utilise un cookie pour authentifier les utilisateurs peut permettre à un utilisateur d'emprunter l'identité (accidentellement ou intentionnellement) d'un autre utilisateur en recevant de la part d'un cache ou d'un proxy intermédiaire un cookie qui ne lui était pas destiné initialement.
+*/
